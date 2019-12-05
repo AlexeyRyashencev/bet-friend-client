@@ -1,41 +1,34 @@
 import React from 'react';
-import {Provider} from 'mobx-react';
-import {useStrict} from 'mobx';
-//
-// /* components */
-// import Menu from '../components/menu';
-//
-/* stores */
-import stores from '../../stores/index';
+import { Provider } from 'mobx-react';
 
-//
-// /* styles */
-// import './global.css';
-// import styles from './app.css';
-//
-// /* use mobx strict mode */
-// useStrict(true);
-//
-// const stores = { leftMenuStore, userStore };
-//
-// const App = props => (
-//     <Provider { ...stores }>
-//         <div className={styles['app-container']}>
-//             <Menu />
-//             <div className={styles['page-container']}>
-//                 {props.children}
-//             </div>
-//         </div>
-//     </Provider>
-// );
+/*components*/
+import TopBar from 'components/top-bar/top-bar';
 
-const App = props => (
-    <Provider {...stores}>
-        <div>
-            <div>
-                {props.children}
-            </div>
-        </div>
-    </Provider>);
+/*material UI*/
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+/*stores*/
+import stores from 'stores/index';
+
+/*styles*/
+import './styles.css';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#212121' },
+    secondary: { main: '#f44336' },
+  },
+});
+
+const App = (props) => (
+  <Provider {...stores}>
+    <ThemeProvider theme={theme}>
+      <TopBar/>
+      <div className='container'>
+        {props.children}
+      </div>
+    </ThemeProvider>
+  </Provider>);
 
 export default App;

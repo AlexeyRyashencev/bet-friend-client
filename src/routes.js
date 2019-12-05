@@ -1,17 +1,18 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import PrivateRoute from "components/private-router";
 
 /* views */
 import App from './views/app';
-import Home from './views/home';
+import Login from './views/login';
 import Profile from './views/profile';
 
 export default () => (
-    <Router>
-        <App>
-            <Route exact path='/' component={Home} />
-            <Route path='/home' component={Home} />
-            <Route path='/profile' component={Profile} />
-        </App>
-    </Router>
+  <Router>
+    <App>
+      <Route exact path='/' component={Login}/>
+      <Route exact path='/login' component={Login}/>
+      <PrivateRoute path='/profile' component={Profile}/>
+    </App>
+  </Router>
 );
